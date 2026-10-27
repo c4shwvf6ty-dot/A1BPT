@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Science Fundamentals - Complete Q&A Module (Q1 - Q8)</title>
+    <style>
+        :root {
+            --primary-blue: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary-dark: #0f172a;
+            --bg-light: #f8fafc;
+            --card-bg: #ffffff;
+            --text-dark: #334155;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            
+            --q1-color: #2563eb;
+            --q2-color: #0284c7;
+            --q3-color: #059669;
+            --q4-color: #7c3aed;
+            --q5-color: #d97706;
+            --q6-color: #dc2626;
+            --q7-color: #9333ea;
+            --q8-color: #0891b2;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Master Header */
+        .master-header {
+            background: linear-gradient(135deg, var(--secondary-dark), #1e293b);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.15);
+            margin-bottom: 2.5rem;
+            text-align: center;
+        }
+
+        .master-header h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.025em;
+        }
+
+        .master-header p {
+            color: #94a3b8;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-pills {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .nav-pill {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #cbd5e1;
+            padding: 0.4rem 0.85rem;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .nav-pill:hover {
+            background-color: white;
+            color: var(--secondary-dark);
+        }
+
+        /* Question Main Card */
+        .question-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            border: 1px solid var(--border-color);
+        }
+
+        .q-header {
+            margin-bottom: 1.75rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--bg-light);
+        }
+
+        .tag-container {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.75rem;
+        }
+
+        .tag {
+            padding: 0.2rem 0.65rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            color: white;
+        }
+
+        .q-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--secondary-dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .prompt-box {
+            background-color: #f1f5f9;
+            border-left: 4px solid var(--primary-blue);
+            padding: 1rem;
+            border-radius: 0 8px 8px 0;
+            font-size: 1.05rem;
+            color: #334155;
+        }
+
+        /* Content Elements */
+        .section-title {
+            font-size: 1.25rem;
+            color: var(--secondary-dark);
+            margin: 1.5rem 0 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-title span {
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        /* Grids & Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+            margin-top: 1rem;
+        }
+
+        .sub-card {
+            background-color: #f8fafc;
+            border-radius: 10px;
+            padding: 1.25rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .sub-card h4 {
+            font-size: 1.05rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-dark);
+        }
+
+        /* Tables */
+        .custom-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            margin-top: 1rem;
+        }
+
+        .custom-table th {
+            background-color: var(--secondary-dark);
+            color: white;
+            padding: 0.85rem 1rem;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        .custom-table td {
+            padding: 0.85rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+            background-color: white;
+            font-size: 0.88rem;
+            vertical-align: top;
+        }
+
+        .custom-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .custom-table tr:nth-child(even) td {
+            background-color: #f8fafc;
+        }
+
+        .param-title {
+            font-weight: 700;
+            color: var(--secondary-dark);
+        }
+
+        /* SVG Box */
+        .diagram-container {
+            width: 100%;
+            background-color: #f1f5f9;
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 1rem 0;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Takeaway Box */
+        .summary-box {
+            margin-top: 1.5rem;
+            padding: 1.25rem;
+            background-color: #ffffff;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-blue);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- Master Header -->
+        <header class="master-header">
+            <h1>Computer Science Fundamentals</h1>
+            <p>Comprehensive Bloom's Taxonomy Question & Answer Module (Q1 - Q8)</p>
+            <nav class="nav-pills">
+                <a href="#q1" class="nav-pill">Q1: Remembering</a>
+                <a href="#q2" class="nav-pill">Q2: Understanding</a>
+                <a href="#q3" class="nav-pill">Q3: Applying</a>
+                <a href="#q4" class="nav-pill">Q4: Analyzing (Languages)</a>
+                <a href="#q5" class="nav-pill">Q5: Analyzing (Input)</a>
+                <a href="#q6" class="nav-pill">Q6: Evaluating (Output)</a>
+                <a href="#q7" class="nav-pill">Q7: Evaluating (Biometrics)</a>
+                <a href="#q8" class="nav-pill">Q8: Creating</a>
+            </nav>
+        </header>
+
+        <!-- QUESTION 1 -->
+        <article id="q1" class="question-card">
+            <div class="q-header">
+                <div class="tag-container">
+                    <span class="tag" style="background-color: var(--q1-color);">Remembering</span>
+                    <span class="tag" style="background-color: #64748b;">Knowledge</span>
+                </div>
+                <h2 class="q-title">Question 1: Computer Characteristics & Hardware Generations</h2>
+                <div class="prompt-box" style="border-left-color: var(--q1-color);">
+                    <strong>Prompt:</strong> List four primary characteristics of a modern digital computer and identify the key hardware technology associated with each of the five generations of computers.
+                </div>
+            </div>
+
+            <h3 class="section-title"><span style="background-color: var(--q1-color);">1</span> Four Primary Characteristics of Digital Computers</h3>
+            <div class="card-grid">
+                <div class="sub-card" style="border-top: 4px solid var(--q1-color);">
+                    <h4>⚡ 1. Speed</h4>
+                    <p>Processes millions to billions of operations per second (measured in microseconds, nanoseconds, or picoseconds).</p>
+                </div>
+                <div class="sub-card" style="border-top: 4px solid var(--q1-color);">
+                    <h4>🎯 2. Accuracy</h4>
+                    <p>Delivers consistently error-free results adhering strictly to the Garbage In, Garbage Out (GIGO) principle.</p>
+                </div>
+                <div class="sub-card" style="border-top: 4px solid var(--q1-color);">
+                    <h4>🔁 3. Diligence</h4>
+                    <p>Free from fatigue, boredom, or loss of concentration; executes repetitive tasks with identical precision.</p>
+                </div>
+                <div class="sub-card" style="border-top: 4px solid var(--q1-color);">
+                    <h4>🌐 4. Versatility</h4>
+                    <p>Capable of performing diverse operations ranging from simple arithmetic to complex graphics rendering and AI.</p>
+                </div>
+            </div>
+
+            <h3 class="section-title"><span style="background-color: var(--q1-color);">2</span> Hardware Technology Across Five Generations</h3>
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th>Generation</th>
+                        <th>Era (Approx.)</th>
+                        <th>Key Hardware Technology</th>
+                        <th>Characteristics & Examples</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1st Generation</strong></td>
+                        <td>1940s – 1950s</td>
+                        <td><strong style="color: var(--q1-color);">Vacuum Tubes</strong></td>
+                        <td>Large physical size, high heat generation, magnetic drums for memory. (e.g., ENIAC, UNIVAC)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2nd Generation</strong></td>
+                        <td>1950s – 1960s</td>
+                        <td><strong style="color: var(--q1-color);">Transistors</strong></td>
+                        <td>Smaller, faster, and more energy-efficient than vacuum tubes; magnetic core memory. (e.g., IBM 7090)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3rd Generation</strong></td>
+                        <td>1960s – 1970s</td>
+                        <td><strong style="color: var(--q1-color);">Integrated Circuits (ICs)</strong></td>
+                        <td>Multiple transistors on silicon chips; keyboard & monitor interfaces. (e.g., IBM System/360)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>4th Generation</strong></td>
+                        <td>1970s – Present</td>
+                        <td><strong style="color: var(--q1-color);">Microprocessors (VLSI / ULSI)</strong></td>
+                        <td>Single microchips contain millions of transistors; gave rise to Personal Computers (PCs) and microcomputers.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>5th Generation</strong></td>
+                        <td>Present & Future</td>
+                        <td><strong style="color: var(--q1-color);">AI & Quantum Computing Chips</strong></td>
+                        <td>Parallel processing, neural networks, ultra-large scale integrated hardware for natural language processing.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+
+        <!-- QUESTION 2 -->
+        <article id="q2" class="question-card">
+            <div class="q-header">
+                <div class="tag-container">
+                    <span class="tag" style="background-color: var(--q2-color);">Understanding</span>
+                    <span class="tag" style="background-color: #64748b;">Comprehension</span>
+                </div>
+                <h2 class="q-title">Question 2: Block Diagram of Computer & System Architecture</h2>
+                <div class="prompt-box" style="border-left-color: var(--q2-color);">
+                    <strong>Prompt:</strong> Explain the flow of data, instructions, and control signals within the functional block diagram of a computer, detailing the interaction between the CPU, memory unit, and I/O interface.
+                </div>
+            </div>
+
+            <h3 class="section-title"><span style="background-color: var(--q2-color);">1</span> Functional Block Diagram of a Computer</h3>
+            <div class="diagram-container">
+                <svg viewBox="0 0 750 340" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="10" y="10" width="730" height="320" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+                    <rect x="30" y="30" width="230" height="280" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+                    <text x="145" y="60" text-anchor="middle" font-weight="bold" fill="#1e40af" font-size="15">CPU</text>
+                    <rect x="50" y="80" width="190" height="60" rx="6" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+                    <text x="145" y="115" text-anchor="middle" font-weight="bold" fill="#991b1b" font-size="13">Control Unit (CU)</text>
+                    <rect x="50" y="155" width="190" height="60" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+                    <text x="145" y="190" text-anchor="middle" font-weight="bold" fill="#166534" font-size="13">ALU</text>
+                    <rect x="50" y="230" width="190" height="50" rx="6" fill="#fefce8" stroke="#ca8a04" stroke-width="1.5"/>
+                    <text x="145" y="260" text-anchor="middle" font-weight="bold" fill="#854d0e" font-size="12">Registers (PC, IR, MAR)</text>
+
+                    <rect x="340" y="40" width="180" height="110" rx="10" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+                    <text x="430" y="80" text-anchor="middle" font-weight="bold" fill="#5b21b6" font-size="15">Primary Memory</text>
+                    <text x="430" y="105" text-anchor="middle" fill="#6d28d9" font-size="12">(RAM / ROM)</text>
+
+                    <rect x="340" y="180" width="180" height="110" rx="10" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+                    <text x="430" y="220" text-anchor="middle" font-weight="bold" fill="#9a3412" font-size="15">I/O Interface</text>
+                    <text x="430" y="245" text-anchor="middle" fill="#c2410c" font-size="12">& Peripherals</text>
+
+                    <!-- Buses -->
+                    <line x1="260" y1="90" x2="340" y2="90" stroke="#2563eb" stroke-width="4"/>
+                    <line x1="260" y1="210" x2="340" y2="210" stroke="#2563eb" stroke-width="4"/>
+                    <line x1="430" y1="150" x2="430" y2="180" stroke="#2563eb" stroke-width="4"/>
+                    <line x1="260" y1="110" x2="340" y2="110" stroke="#d97706" stroke-width="3" stroke-dasharray="6,3"/>
+                    <line x1="260" y1="230" x2="340" y2="230" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="4,4"/>
+
+                    <rect x="550" y="60" width="170" height="200" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+                    <text x="635" y="90" text-anchor="middle" font-weight="bold" fill="#334155" font-size="12">System Buses</text>
+                    <line x1="565" y1="120" x2="600" y2="120" stroke="#2563eb" stroke-width="4"/>
+                    <text x="610" y="124" fill="#1e293b" font-size="11">Data Bus</text>
+                    <line x1="565" y1="160" x2="600" y2="160" stroke="#d97706" stroke-width="3" stroke-dasharray="5,3"/>
+                    <text x="610" y="164" fill="#1e293b" font-size="11">Address Bus</text>
+                    <line x1="565" y1="200" x2="600" y2="200" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="4,4"/>
+                    <text x="610" y="204" fill="#1e293b" font-size="11">Control Bus</text>
+                </svg>
+            </div>
+
+            <h3 class="section-title"><span style="background-color: var(--q2-color);">2</span> Interactions Between CPU, Memory, and I/O</h3>
+            <div class="card-grid">
+                <div class="sub-card">
+                    <h4>1. Instruction & Data Flow</h4>
+                    <p>Instructions flow from Primary Memory through the <strong>Data Bus</strong> into the CPU's Instruction Register. Operands flow into the ALU for computation and return to RAM or Output devices.</p>
+                </div>
+                <div class="sub-card">
+                    <h4>2. Control Signals Flow</h4>
+                    <p>The <strong>Control Unit (CU)</strong> decodes instructions and emits timing/control signals (Memory Read/Write, I/O Read/Write) over the Control Bus to coordinate system timing.</p>
+                </div>
+                <div class="sub-card">
+                    <h4>3. I/O Interface & DMA</h4>
+                    <p>I/O interfaces buffer speed mismatches and handle interrupts. <strong>Direct Memory Access (DMA)</strong> controllers transfer data directly between I/O and RAM without overloading CPU cycles.</p>
+                </div>
+            </div>
+        </article>
+
+        <!-- QUESTION 3 -->
+        <article id="q3" class="question-card">
+            <div class="q-header">
+                <div class="tag-container">
+                    <span class="tag" style="background-color: var(--q3-color);">Applying</span>
+                    <span class="tag" style="background-color: #64748b;">Application</span>
+                </div>
+                <h2 class="q-title">Question 3: Scanning & Card Reading Hardware Deployment</h2>
+                <div class="prompt-box" style="border-left-color: var(--q3-color);">
+                    <strong>Prompt:</strong> Demonstrate how optical data scanning devices (e.g., barcode/OMR scanners) and electronic card readers (e.g., RFID/smart card readers) can be deployed in a campus environment to automate student attendance and library checkouts.
+                </div>
+            </div>
+
+            <h3 class="section-title"><span style="background-color: var(--q3-color);">1</span> Deployment Workflows</h3>
+            <div class="card-grid">
+                <div class="sub-card" style="border-top: 4px solid var(--q3-color);">
+                    <h4>🏫 Scenario A: Automated Attendance System</h4>
+                    <p><strong>RFID Readers:</strong> Mounted at classroom doors. Students tap smart ID cards; reader extracts UID and transmits timestamped presence to the campus Student Information System (SIS).</p>
+                    <p style="margin-top: 0.5rem;"><strong>OMR Scanners:</strong> Used for mass exam evaluation, batch-scanning pre-printed answer sheets for fast, automated grading.</p>
+                </div>
+                <div class="sub-card" style="border-top: 4px solid var(--q3-color);">
+                    <h4>📚 Scenario B: Automated Library Checkout</h4>
+                    <p><strong>Barcode/2D Scanners:</strong> Installed at self-service kiosks to scan book ISBN labels and student ID barcodes rapidly.</p>
+                    <p style="margin-top: 0.5rem;"><strong>RFID Security Gates:</strong> Query item security bits at library exits to prevent unauthorized book removal without checkouts.</p>
+                </div>
+            </div>
+
+            <h3 class="section-title"><span style="background-color: var(--q3-color);">2</span> Hardware Comparison</h3>
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th>Hardware Device</th>
+                        <th>Campus Application</th>
+                        <th>Line-of-Sight Needed?</th>
+                        <th>Data Speed</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>RFID Card Readers</strong></td>
+                        <td>Classroom attendance & door access</td>
+                        <td>No (Proximity radio waves)</td>
+                        <td>Instant (&lt; 100ms)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Optical Barcode Scanners</strong></td>
+                        <td>Library book checkouts & inventory</td>
+                        <td>Yes (Laser alignment)</td>
+                        <td>Fast (100–300ms)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>OMR Readers</strong></td>
+                        <td>Mass exam bubble sheet evaluation</td>
+                        <td>Yes (Paper feeding mechanism)</td>
+                        <td>High-volume batch</td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+
+        <!-- QUESTION 4 -->
+        <article id="q4" class="question-card">
+            <div class="q-header">
+                <div class="tag-container">
+                    <span class="tag" style="background-color: var(--q4-color);">Analyzing</span>
+                    <span class="tag" style="background-color: #64748b;">Analysis</span>
+                </div>
+                <h2 class="q-title">Question 4: Comparative Breakdown of Computer Language Categories</h2>
+                <div class="prompt-box" style="border-left-color: var(--q4-color);">
+                    <strong>Prompt:</strong> Distinguish between low-level languages (Machine and Assembly) and high-level languages in terms of execution speed, hardware dependence, translation requirements, and programming complexity.
+                </div>
+            </div>
+
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Machine Language (Low-Level)</th>
+                        <th>Assembly Language (Low-Level)</th>
+                        <th>High-Level Languages (HLL)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="param-title">⚡ Execution Speed</td>
+                        <td><strong>Extremely Fast:</strong> Directly executed by CPU binary logic without delays.</td>
+                        <td><strong>Very Fast:</strong> Minimal translation overhead via 1-to-1 assembler mapping.</td>
+                        <td><strong>Slower:</strong> Incurs translation, optimization, and runtime overhead.</td>
+                    </tr>
+                    <tr>
+                        <td class="param-title">💻 Hardware Dependence</td>
+                        <td><strong>100% Machine Dependent:</strong> Tied directly to specific CPU instruction architecture.</td>
+                        <td><strong>Machine Dependent:</strong> Tied to specific processor register sets and instruction formats.</td>
+                        <td><strong>Hardware Independent:</strong> Highly portable across platforms via compilers/interpreters.</td>
+                    </tr>
+                    <tr>
+                        <td class="param-title">🔄 Translation Requirements</td>
+                        <td><strong>None:</strong> CPU directly reads raw binary opcode (0s and 1s).</td>
+                        <td><strong>Assembler:</strong> Converts symbolic mnemonics into binary machine code.</td>
+                        <td><strong>Compiler or Interpreter:</strong> Translates high-level source code to machine/bytecode.</td>
+                    </tr>
+                    <tr>
+                        <td class="param-title">🧩 Programming Complexity</td>
+                        <td><strong>Extremely High:</strong> Cryptic binary strings; highly tedious and error-prone.</td>
+                        <td><strong>High:</strong> Requires manual memory, register, and stack management.</td>
+                        <td><strong>Low:</strong> English-like syntax with abstract data structures and dynamic memory.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+
+        <!-- QUESTION 5 -->
+        <article id="q5" class="question-card">
+            <div class="q-header">
+                <div class="tag-container">
+                    <span class="tag" style="background-color: var(--q5-color);">Analyzing</span>
+                    <span class="tag" style="background-color: #64748b;">Analysis</span>
+                </div>
+                <h2 class="q-title">Question 5: Point-and-Draw Devices vs. Graphics Digitizers</h2>
+                <div class="prompt-box" style="border-left-color: var(--q5-color);">
+                    <strong>Prompt:</strong> Compare point-and-draw devices (such as a mouse and trackball) with graphics digitizers/drawing tablets, highlighting how their coordinate tracking mechanisms and pressure sensitivity differ for CAD and digital art applications.
+                </div>
+            </div>
+
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th>Feature / Dimension</th>
+                        <th>Point-and-Draw Devices (Mouse/Trackball)</th>
+                        <th>Graphics Digitizers / Drawing Tablets</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="param-title">📍 Coordinate Tracking</td>
+                        <td><strong>Relative Positioning:</strong> Measures displacement vectors ($\Delta X, \Delta Y$). Repositioning mouse changes physical location without moving cursor.</td>
+                        <td><strong>Absolute Positioning:</strong> 1:1 mapping between tablet surface and display screen coordinates. Touching a point teleports cursor instantly.</td>
+                    </tr>
+                    <tr>
+                        <td class="param-title">🎨 Pressure Sensitivity</td>
+                        <td><strong>Binary Only (0 or 1):</strong> Simple digital click states; line width and opacity must be manually selected in software.</td>
+                        <td><strong>High Analog Sensitivity:</strong> Measures 4,096 to 8,192+ levels of stylus tip pressure and tilt angle ($\pm60^\circ$) dynamically.</td>
+                    </tr>
+                    <tr>
+                        <td class="param-title">📐 CAD Applications</td>
+                        <td><strong>Ideal for Precision Vector CAD:</strong> Excellent for snapping vector endpoints, selecting UI items, and panning viewports.</td>
+                        <td><strong>Ideal for 3D Sculpting:</strong> Suited for freehand organic CAD surface modeling (ZBrush) and digitizing physical paper drawings.</td>
+                    </tr>
+                    <tr>
+                        <td class="param-title">🖌️ Digital Art</td>
+                        <td><strong>Low Expressiveness:</strong> Difficult to emulate natural fluid brushstrokes, shading, or variable pen pressure.</td>
+                        <td><strong>Optimal Expressiveness:</strong> Replicates physical pen, pencil, and brush media with complete artistic control.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+
+        <!-- QUESTION 6 -->
+        <article id="q6" class="question-card">
+            <div class="q-header">
+                <div class="tag-container">
+                    <span class="tag" style="background-color: var(--q6-color);">Evaluating</span>
+                    <span class="tag" style="background-color: #64748b;">Evaluation</span>
+                </div>
+                <h2 class="q-title">Question 6: Technical Assessment of Blueprint Output Systems</h2>
+                <div class="prompt-box" style="border-left-color: var(--q6-color);">
+                    <strong>Prompt:</strong> Assess whether a drum/flatbed plotter or an ultra-high-definition monitor and large-format printer combination is superior for producing civil engineering blueprints, justifying your selection based on line resolution, scalability, and long-term production costs.
+                </div>
+            </div>
+
+            <div class="summary-box" style="border-left-color: var(--q6-color); background-color: #fef2f2; margin-bottom: 1.5rem;">
+                <h4 style="color: #991b1b;">🏆 Executive Choice: Ultra-HD Monitor + Large-Format Inkjet Printer Combo</h4>
+                <p>This combination is technically and economically superior for modern civil engineering due to high micro-droplet resolution (2400 DPI), fast raster scaling, multi-layer GIS/BIM support, and lower total cost of ownership.</p>
+            </div>
+
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th>Criteria</th>
+                        <th>Pen Plotters (Drum / Flatbed)</th>
+                        <th>UHD Monitor + Large-Format Printer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="param-title">✏️ Line Resolution</td>
+                        <td>Continuous physical ink vectors, but pens dry out/bleed and cannot print shaded GIS overlays.</td>
+                        <td><strong>2400 x 1200 DPI:</strong> Ultra-fine 0.02mm line width matching vector clarity with full color support.</td>
+                    </tr>
+                    <tr>
+                        <td class="param-title">📈 Scalability & Speed</td>
+                        <td>Slow mechanical plotting; draw speed degrades linearly with higher vector drawing density.</td>
+                        <td><strong>High Speed:</strong> Prints full A0/D size sheets in &lt; 60 seconds regardless of drawing complexity.</td>
+                    </tr>
+                    <tr>
+                        <td class="param-title">💰 Production Costs</td>
+                        <td>High mechanical maintenance, pen wear, and alignment overhead.</td>
+                        <td><strong>Lower TCO:</strong> Bulk ink systems and digital soft-proofing on 4K/8K screens minimize paper waste.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+
+        <!-- QUESTION 7 -->
+        <article id="q7" class="question-card">
+            <div class="q-header">
+                <div class="tag-container">
+                    <span class="tag" style="background-color: var(--q7-color);">Evaluating</span>
+                    <span class="tag" style="background-color: #64748b;">Evaluation</span>
+                </div>
+                <h2 class="q-title">Question 7: Facial Recognition vs. Voice Biometrics in Public Environments</h2>
+                <div class="prompt-box" style="border-left-color: var(--q7-color);">
+                    <strong>Prompt:</strong> Critique the operational reliability and security vulnerabilities of vision-input devices (facial recognition) compared to voice recognition devices when deployed as primary biometric authentication tools in high-ambient-noise, publicly exposed environments.
+                </div>
+            </div>
+
+            <div class="summary-box" style="border-left-color: var(--q7-color); background-color: #f3e8ff; margin-bottom: 1.5rem;">
+                <h4 style="color: #6b21a8;">📌 Verdict: Vision-Input Devices (3D Facial Recognition) are Superior</h4>
+                <p>In noisy public spaces, active 3D IR facial recognition maintains high accuracy and security, whereas voice biometrics suffer catastrophic false rejection rates from background noise and high vulnerability to AI voice cloning.</p>
+            </div>
+
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th>Evaluation Dimension</th>
+                        <th>Vision-Input Devices (Facial Recognition)</th>
+                        <th>Voice Recognition Devices (Voice Biometrics)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="param-title">⚙️ Operational Reliability</td>
+                        <td><strong>High with Active IR:</strong> 3D depth sensors penetrate low light and night darkness. Sensitive mainly to face masks or extreme sun glare.</td>
+                        <td><strong>Severely Impaired:</strong> Background crowd noise and echoes distort Signal-to-Noise Ratio (SNR), causing high False Rejection Rates.</td>
+                    </tr>
+                    <tr>
+                        <td class="param-title">🛡️ Security Vulnerabilities</td>
+                        <td><strong>Low-Moderate:</strong> 3D depth mapping and liveness detection effectively prevent 2D photo/video presentation attacks.</td>
+                        <td><strong>Extremely High:</strong> Highly vulnerable to AI voice cloning deepfakes, replay attacks, and public eavesdropping.</td>
+                    </tr>
+                    <tr>
+                        <td class="param-title">🔒 User Privacy</td>
+                        <td><strong>Non-Intrusive:</strong> Touchless, silent authentication upon approach without vocalizing passphrases.</td>
+                        <td><strong>High Friction:</strong> Requires speaking out loud in public, exposing passphrases to nearby bystanders.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+
+        <!-- QUESTION 8 -->
+        <article id="q8" class="question-card">
+            <div class="q-header">
+                <div class="tag-container">
+                    <span class="tag" style="background-color: var(--q8-color);">Synthesis</span>
+                    <span class="tag" style="background-color: #64748b;">Creating</span>
+                </div>
+                <h2 class="q-title">Question 8: Accessible Hands-Free Computer Workstation Design</h2>
+                <div class="prompt-box" style="border-left-color: var(--q8-color);">
+                    <strong>Prompt:</strong> Design an accessible, hands-free computer workstation tailored for a visually impaired user. Propose a coherent integration of non-visual input devices (such as voice recognition systems and tactile keyboards) with specialized output devices (such as voice response synthesizers and screen readers).
+                </div>
+            </div>
+
+            <h3 class="section-title"><span style="background-color: var(--q8-color);">1</span> Workstation Architecture</h3>
+            <div class="card-grid">
+                <div class="sub-card" style="border-top: 4px solid var(--q8-color);">
+                    <h4>🎙️ Non-Visual Input Subsystem</h4>
+                    <ul>
+                        <li><strong>Directional Voice Recognition:</strong> Array microphones with acoustic beamforming for hands-free OS commands & dictation.</li>
+                        <li><strong>Refreshable Braille Keyboard:</strong> 80-cell tactile Braille display with mechanical shortcut keys for precise coding/text navigation.</li>
+                        <li><strong>Spatial Gesture Tracking:</strong> IR sensors for mid-air hand-swipe commands to mute TTS or skip alerts quickly.</li>
+                    </ul>
+                </div>
+                <div class="sub-card" style="border-top: 4px solid var(--q8-color);">
+                    <h4>🔊 Specialized Output Subsystem</h4>
+                    <ul>
+                        <li><strong>Neural TTS & Screen Readers:</strong> Fast voice synthesis (up to 450 WPM) translating active GUIs and text into audio.</li>
+                        <li><strong>3D Spatial Binaural Audio:</strong> Routes primary work audio to the front and system notifications to left/right sound channels.</li>
+                        <li><strong>Mechanical Tactile Braille Pins:</strong> Dynamic real-time pin feedback translating active window text into touchable Braille.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 class="section-title"><span style="background-color: var(--q8-color);">2</span> System Integration Workflow</h3>
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th>Interaction Layer</th>
+                        <th>Hardware Components</th>
+                        <th>OS / Software Integration</th>
+                        <th>User Experience Outcome</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="param-title">🗣️ Hands-Free Navigation</td>
+                        <td>Directional MEMS Microphones</td>
+                        <td>NLP Command Parser & OS Hooks</td>
+                        <td>Full hands-free application launch, dictation, and file management by voice commands.</td>
+                    </tr>
+                    <tr>
+                        <td class="param-title">📜 Tactile Verification</td>
+                        <td>Refreshable Braille Keyboard</td>
+                        <td>Screen Reader Accessibility APIs</td>
+                        <td>Silent, high-precision reading of tables, code syntax, and complex documents.</td>
+                    </tr>
+                    <tr>
+                        <td class="param-title">🎧 Multi-Modal Audio</td>
+                        <td>Spatial 3D Audio Headset</td>
+                        <td>Neural TTS & Audio Routing Daemon</td>
+                        <td>Separates primary work dictation from background alerts via 3D sound positioning to prevent cognitive fatigue.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+
+        <footer>
+            Computer Science Fundamentals - Complete Master Solutions (Q1 - Q8)
+        </footer>
+
+    </div>
+
+</body>
+</html>
